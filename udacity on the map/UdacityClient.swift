@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 struct UdacityResponse: Decodable {
     let account: UdacityAccount
     let session: UdacitySession
@@ -56,8 +57,6 @@ class UdacityClient {
             
             let range = Range(5..<data.count)
             let newData = data.subdata(in: range) /* subset response data! */
-            
-            print(String(data: newData, encoding: .utf8)!)
             
             guard let udacityResponse = try? JSONDecoder().decode(UdacityResponse.self, from: newData) else {
                 completionHandler(false, "error parsing data")
