@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5B908A320ABA1B6007BA9EF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B908A220ABA1B6007BA9EF /* Student.swift */; };
+		A5B908A520ABA263007BA9EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B908A420ABA263007BA9EF /* User.swift */; };
+		A5E952D520ABA79400E60D7E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E952D420ABA79400E60D7E /* TableViewController.swift */; };
 		A5F0956920AA41E800B3874F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0956820AA41E800B3874F /* AppDelegate.swift */; };
-		A5F0956B20AA41E800B3874F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0956A20AA41E800B3874F /* ViewController.swift */; };
+		A5F0956B20AA41E800B3874F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0956A20AA41E800B3874F /* MainViewController.swift */; };
 		A5F0956E20AA41E800B3874F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F0956C20AA41E800B3874F /* Main.storyboard */; };
 		A5F0957020AA41E800B3874F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F0956F20AA41E800B3874F /* Assets.xcassets */; };
 		A5F0957320AA41E800B3874F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F0957120AA41E800B3874F /* LaunchScreen.storyboard */; };
@@ -22,9 +25,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A5B908A220ABA1B6007BA9EF /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		A5B908A420ABA263007BA9EF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A5E952D420ABA79400E60D7E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A5F0956520AA41E800B3874F /* udacity on the map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "udacity on the map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F0956820AA41E800B3874F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A5F0956A20AA41E800B3874F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A5F0956A20AA41E800B3874F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A5F0956D20AA41E800B3874F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5F0956F20AA41E800B3874F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5F0957220AA41E800B3874F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5B908A120ABA194007BA9EF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A5B908A220ABA1B6007BA9EF /* Student.swift */,
+				A5B908A420ABA263007BA9EF /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		A5F0955C20AA41E700B3874F = {
 			isa = PBXGroup;
 			children = (
@@ -68,11 +83,11 @@
 		A5F0956720AA41E800B3874F /* udacity on the map */ = {
 			isa = PBXGroup;
 			children = (
+				A5B908A120ABA194007BA9EF /* Models */,
 				A5F0958220AA553400B3874F /* Utils */,
 				A5F0957F20AA550800B3874F /* Clients */,
 				A5F0957A20AA440F00B3874F /* View Controllers */,
 				A5F0956820AA41E800B3874F /* AppDelegate.swift */,
-				A5F0956A20AA41E800B3874F /* ViewController.swift */,
 				A5F0956C20AA41E800B3874F /* Main.storyboard */,
 				A5F0956F20AA41E800B3874F /* Assets.xcassets */,
 				A5F0957120AA41E800B3874F /* LaunchScreen.storyboard */,
@@ -85,8 +100,10 @@
 		A5F0957A20AA440F00B3874F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A5F0956A20AA41E800B3874F /* MainViewController.swift */,
 				A5F0957B20AA443B00B3874F /* LoginViewController.swift */,
 				A5F0958820AA729700B3874F /* MapViewController.swift */,
+				A5E952D420ABA79400E60D7E /* TableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -201,10 +218,13 @@
 				A5F0958620AA657100B3874F /* UdacityConstants.swift in Sources */,
 				A5F0958120AA551900B3874F /* UdacityClient.swift in Sources */,
 				A5F0957C20AA443B00B3874F /* LoginViewController.swift in Sources */,
-				A5F0956B20AA41E800B3874F /* ViewController.swift in Sources */,
+				A5F0956B20AA41E800B3874F /* MainViewController.swift in Sources */,
 				A5F0956920AA41E800B3874F /* AppDelegate.swift in Sources */,
+				A5E952D520ABA79400E60D7E /* TableViewController.swift in Sources */,
 				A5F0957E20AA447F00B3874F /* Constants.swift in Sources */,
+				A5B908A320ABA1B6007BA9EF /* Student.swift in Sources */,
 				A5F0958920AA729700B3874F /* MapViewController.swift in Sources */,
+				A5B908A520ABA263007BA9EF /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

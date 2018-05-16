@@ -8,28 +8,12 @@
 
 import Foundation
 
-struct UdacityResponse: Decodable {
-    let account: UdacityAccount
-    let session: UdacitySession
-}
-
-struct UdacityAccount: Decodable {
-    let registered: Bool
-    let key: String
-}
-
-struct UdacitySession: Decodable {
-    let id: String
-}
-
 class UdacityClient {
     // shared session
     var session = URLSession.shared
     
     var sessionId: String?
     var userId: String?
-    
-    
     
     func doLogin(username: String, password: String, completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void ) {
         

@@ -8,32 +8,21 @@
 
 import Foundation
 
-
-
-struct Pin:Decodable {
-    let firstName: String?
-    let lastName: String?
-    let latitude: Double?
-    let longitude: Double?
-    let mapString: String?
-    let mediaURL: String?
-    let objectId: String?
-    let uniqueKey: String?
-}
-
-struct ParseResult:Decodable {
-    let results: [Pin]
-}
-
 class ParseClient {
     
-    var pins: [Pin]?
+    var studentsInformations: [StudentInformation]?
     
-    func loadLocations(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void){
-        
+    func generateRequest() -> URLRequest {
         var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100")!)
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        
+        return request
+    }
+    
+    func loadLocations(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void){
+        
+        let request = generateRequest()
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
             
@@ -54,11 +43,15 @@ class ParseClient {
                 return
             }
             
-            guard let parseResult = try? JSONDecoder().decode(ParseResult.self, from: data) else {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+            guard let parsedData = try? decoder.decode(StudentsInformationResponse.self, from: data) else {
                 completionHandler(false, "error parsing data")
                 return
             }
-            self.pins = parseResult.results
+            
+            self.studentsInformations = parsedData.results?.sorted(by: { $0.updatedAt! > $1.updatedAt! })
+            
             completionHandler(true, nil)
         }
         task.resume()
@@ -70,4 +63,15 @@ class ParseClient {
         }
         return Singleton.sharedInstance
     }
+}
+
+extension DateFormatter {
+    static let iso8601Full: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
 }
