@@ -11,7 +11,7 @@
 		A5B908A520ABA263007BA9EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B908A420ABA263007BA9EF /* User.swift */; };
 		A5E952D520ABA79400E60D7E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E952D420ABA79400E60D7E /* TableViewController.swift */; };
 		A5F0956920AA41E800B3874F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0956820AA41E800B3874F /* AppDelegate.swift */; };
-		A5F0956B20AA41E800B3874F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0956A20AA41E800B3874F /* MainViewController.swift */; };
+		A5F0956B20AA41E800B3874F /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0956A20AA41E800B3874F /* BaseController.swift */; };
 		A5F0956E20AA41E800B3874F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F0956C20AA41E800B3874F /* Main.storyboard */; };
 		A5F0957020AA41E800B3874F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F0956F20AA41E800B3874F /* Assets.xcassets */; };
 		A5F0957320AA41E800B3874F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F0957120AA41E800B3874F /* LaunchScreen.storyboard */; };
@@ -30,7 +30,7 @@
 		A5E952D420ABA79400E60D7E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A5F0956520AA41E800B3874F /* udacity on the map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "udacity on the map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F0956820AA41E800B3874F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A5F0956A20AA41E800B3874F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A5F0956A20AA41E800B3874F /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		A5F0956D20AA41E800B3874F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5F0956F20AA41E800B3874F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5F0957220AA41E800B3874F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		A5F0957A20AA440F00B3874F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A5F0956A20AA41E800B3874F /* MainViewController.swift */,
+				A5F0956A20AA41E800B3874F /* BaseController.swift */,
 				A5F0957B20AA443B00B3874F /* LoginViewController.swift */,
 				A5F0958820AA729700B3874F /* MapViewController.swift */,
 				A5E952D420ABA79400E60D7E /* TableViewController.swift */,
@@ -218,7 +218,7 @@
 				A5F0958620AA657100B3874F /* UdacityConstants.swift in Sources */,
 				A5F0958120AA551900B3874F /* UdacityClient.swift in Sources */,
 				A5F0957C20AA443B00B3874F /* LoginViewController.swift in Sources */,
-				A5F0956B20AA41E800B3874F /* MainViewController.swift in Sources */,
+				A5F0956B20AA41E800B3874F /* BaseController.swift in Sources */,
 				A5F0956920AA41E800B3874F /* AppDelegate.swift in Sources */,
 				A5E952D520ABA79400E60D7E /* TableViewController.swift in Sources */,
 				A5F0957E20AA447F00B3874F /* Constants.swift in Sources */,
