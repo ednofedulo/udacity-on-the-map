@@ -72,10 +72,10 @@
             </objects>
             <point key="canvasLocation" x="-1218.4000000000001" y="-163.26836581709148"/>
         </scene>
-        <!--View Controller-->
+        <!--Pin View Controller-->
         <scene sceneID="hju-g2-4Zy">
             <objects>
-                <viewController storyboardIdentifier="chooseLocation" id="Mie-3d-RxS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chooseLocationView" id="Mie-3d-RxS" customClass="PinViewController" customModule="udacity_on_the_map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Ds-j3-O3r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,6 +92,9 @@
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="dismiss:" destination="Mie-3d-RxS" eventType="touchUpInside" id="tyW-Z5-3Ql"/>
+                                                </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-71" translatesAutoresizingMaskIntoConstraints="NO" id="iSs-IB-fYQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
@@ -153,9 +156,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgG-dn-UwH">
                                         <rect key="frame" x="0.0" y="431.5" width="375" height="215.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxa-fz-U5u">
-                                                <rect key="frame" x="111" y="93" width="153" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxa-fz-U5u">
+                                                <rect key="frame" x="50" y="90" width="275" height="36"/>
                                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Find on the Map">
                                                     <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -165,12 +169,17 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="findLocation:" destination="Mie-3d-RxS" eventType="touchUpInside" id="ME9-ZV-u9D"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="Fxa-fz-U5u" firstAttribute="centerX" secondItem="fgG-dn-UwH" secondAttribute="centerX" id="2S3-qZ-tnv"/>
                                             <constraint firstItem="Fxa-fz-U5u" firstAttribute="centerY" secondItem="fgG-dn-UwH" secondAttribute="centerY" id="3pJ-bp-Udx"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fxa-fz-U5u" secondAttribute="trailing" constant="50" id="Mjv-7D-Wd2"/>
+                                            <constraint firstItem="Fxa-fz-U5u" firstAttribute="leading" secondItem="fgG-dn-UwH" secondAttribute="leading" constant="50" id="qRN-qN-97e"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -186,17 +195,17 @@
                         <viewLayoutGuide key="safeArea" id="ywr-y6-0qN"/>
                     </view>
                     <connections>
-                        <segue destination="OXc-if-7nA" kind="show" id="NGg-46-H0R"/>
+                        <outlet property="locationText" destination="VyG-8q-0jP" id="tOQ-8s-XX6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGy-EV-y2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2374" y="-163"/>
+            <point key="canvasLocation" x="2373.5999999999999" y="-163.26836581709148"/>
         </scene>
-        <!--View Controller-->
+        <!--Pin View Controller-->
         <scene sceneID="Ix8-ua-Kgi">
             <objects>
-                <viewController storyboardIdentifier="enterLink" id="OXc-if-7nA" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="enterLinkView" id="OXc-if-7nA" customClass="PinViewController" customModule="udacity_on_the_map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2aW-Y1-Xj8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -213,10 +222,13 @@
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="dismiss:" destination="OXc-if-7nA" eventType="touchUpInside" id="6l6-Cc-fbk"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a link to Share Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Llu-yf-6ek">
                                                 <rect key="frame" x="13" y="146.5" width="349" height="30"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -242,6 +254,23 @@
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BKT-it-H7M">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="323.5"/>
                                             </mapView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RM-uP-gck">
+                                                <rect key="frame" x="50" y="257.5" width="275" height="36"/>
+                                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Add Pin">
+                                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.makesToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="SavePin:" destination="OXc-if-7nA" eventType="touchUpInside" id="GqR-mN-DSQ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -249,6 +278,10 @@
                                             <constraint firstAttribute="bottom" secondItem="BKT-it-H7M" secondAttribute="bottom" id="6bA-Pd-szy"/>
                                             <constraint firstAttribute="trailing" secondItem="BKT-it-H7M" secondAttribute="trailing" id="JfR-Pw-E1M"/>
                                             <constraint firstItem="BKT-it-H7M" firstAttribute="leading" secondItem="wfs-Uo-9On" secondAttribute="leading" id="NI9-fa-man"/>
+                                            <constraint firstAttribute="bottom" secondItem="4RM-uP-gck" secondAttribute="bottom" constant="30" id="VuS-M1-uHf"/>
+                                            <constraint firstAttribute="trailing" secondItem="4RM-uP-gck" secondAttribute="trailing" constant="50" id="XGj-1X-Z7S"/>
+                                            <constraint firstItem="4RM-uP-gck" firstAttribute="centerX" secondItem="wfs-Uo-9On" secondAttribute="centerX" id="gzg-lJ-lIm"/>
+                                            <constraint firstItem="4RM-uP-gck" firstAttribute="leading" secondItem="wfs-Uo-9On" secondAttribute="leading" constant="50" id="ihQ-Ys-0Y8"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -263,6 +296,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UB3-PT-iQo"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="BKT-it-H7M" id="XNj-4p-TXY"/>
+                        <outlet property="urlText" destination="Llu-yf-6ek" id="ZFi-Qb-pH9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V6j-DG-QJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -310,10 +347,22 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="On the Map" id="srI-bX-Khk">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="yzR-bg-lhD"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="yzR-bg-lhD">
+                                            <connections>
+                                                <action selector="doLogout:" destination="EsQ-vi-h1U" id="hqC-qz-LQ4"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <rightBarButtonItems>
-                                            <barButtonItem systemItem="refresh" id="6WK-ba-BIm"/>
-                                            <barButtonItem title="Item" image="baseline_person_pin_circle_black_24pt" id="6dE-jD-jer"/>
+                                            <barButtonItem systemItem="refresh" id="6WK-ba-BIm">
+                                                <connections>
+                                                    <action selector="doRefresh:" destination="EsQ-vi-h1U" id="6G8-ji-Ih4"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Item" image="baseline_person_pin_circle_black_24pt" id="6dE-jD-jer">
+                                                <connections>
+                                                    <action selector="doPlacePin:" destination="EsQ-vi-h1U" id="l1N-ko-lbc"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
@@ -335,7 +384,6 @@
                     <navigationItem key="navigationItem" title="On the Map" id="Tnh-wg-g8A"/>
                     <connections>
                         <outlet property="studentsTableView" destination="gpL-5G-CVj" id="62F-b9-hSw"/>
-                        <segue destination="Mie-3d-RxS" kind="show" identifier="createPinSegue" id="OhS-US-Jlg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q4t-sE-WV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -357,10 +405,22 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="On the Map" id="Agi-q2-P1O">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="iHf-Ij-R4s"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="iHf-Ij-R4s">
+                                            <connections>
+                                                <action selector="doLogout:" destination="Ckt-XP-Fd6" id="JvW-jy-cGe"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <rightBarButtonItems>
-                                            <barButtonItem systemItem="refresh" id="7PP-k5-ewi"/>
-                                            <barButtonItem title="Item" image="baseline_person_pin_circle_black_24pt" id="45Z-wM-XXt"/>
+                                            <barButtonItem systemItem="refresh" id="7PP-k5-ewi">
+                                                <connections>
+                                                    <action selector="doRefresh:" destination="Ckt-XP-Fd6" id="Amn-m3-xOS"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Item" image="baseline_person_pin_circle_black_24pt" id="45Z-wM-XXt">
+                                                <connections>
+                                                    <action selector="doPlacePin:" destination="Ckt-XP-Fd6" id="Sgx-13-Y6s"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
@@ -382,7 +442,6 @@
                     <navigationItem key="navigationItem" title="On the Map" id="syf-cc-43H"/>
                     <connections>
                         <outlet property="mapView" destination="cDf-sN-Ahx" id="ioR-wE-JuF"/>
-                        <segue destination="Mie-3d-RxS" kind="show" identifier="createPinSegue" id="Cfl-1m-uqZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IXA-H6-ea7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -414,7 +473,4 @@
         <image name="baseline_map_black_24pt" width="24" height="24"/>
         <image name="baseline_person_pin_circle_black_24pt" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="OhS-US-Jlg"/>
-    </inferredMetricsTieBreakers>
 </document>

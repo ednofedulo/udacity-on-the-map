@@ -45,15 +45,8 @@ class LoginViewController: UIViewController {
                 self.displayError(error!)
             }
         } else {
-            DispatchQueue.main.async {
-                self.usernameTextField.text = ""
-                self.passwordTextField.text = ""
-            }
-            
-            ParseClient.sharedInstance().loadLocations(completionHandler: {_,_ in
-                let controller = self.storyboard!.instantiateViewController(withIdentifier: "NavigationController")
-                self.present(controller, animated: true)
-            })
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "NavigationController")
+            self.present(controller, animated: true)
         }
     }
     

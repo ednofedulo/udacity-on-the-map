@@ -9,6 +9,21 @@
 import UIKit
 
 class BaseController: UIViewController {
+    @IBAction func doPlacePin(_ sender: Any) {
+        let controller = self.storyboard!.instantiateViewController(withIdentifier: "chooseLocationView")
+        self.present(controller, animated: true)
+    }
+    
+    @IBAction func doRefresh(_ sender: Any) {
+        
+    }
+    
+    @IBAction func doLogout(_ sender: Any) {
+        confirm(message: "Do you want do logout?", completionHandler: { (_) in
+            ParseClient.sharedInstance().studentsInformations = nil
+            self.dismiss(animated: true, completion: nil)
+        })
+    }
     
     func configureNavBar(){
         let pinImage = UIImage(named: Constants.UI.PinIcon)
@@ -19,21 +34,6 @@ class BaseController: UIViewController {
         
         self.navigationItem.rightBarButtonItems = [refreshButton, pinButton]
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(doLogout))
-    }
-    
-    @objc func doLogout(sender: UIBarButtonItem){
-        confirm(message: "Do you want do logout?", completionHandler: { (_) in
-            ParseClient.sharedInstance().studentsInformations = nil
-            self.dismiss(animated: true, completion: nil)
-        })
-    }
-    
-    @objc func doRefresh(sender: UIBarButtonItem){
-        print("refresh pressed")
-    }
-    
-    @objc func doPlacePin(sender: UIBarButtonItem){
-        performSegue(withIdentifier: "createPinSegue", sender: self)
     }
     
     func showAlert(message: String, title: String) {

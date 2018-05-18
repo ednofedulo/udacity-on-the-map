@@ -17,8 +17,8 @@ class MapViewController: BaseController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        //parseClient.loadLocations(completionHandler: completionHandler)
-        populateMap()
+        parseClient.loadLocations(completionHandler: completionHandler)
+        //populateMap()
         
         configureNavBar()
     }
