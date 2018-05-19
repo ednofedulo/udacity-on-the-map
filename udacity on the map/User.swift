@@ -19,3 +19,9 @@ struct UserAccount: Decodable {
 struct UserSession: Decodable {
     let id: String
 }
+
+struct User {
+    let firstName: String
+    let lastName: String
+    let id: String
+}

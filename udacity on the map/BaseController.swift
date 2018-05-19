@@ -5,13 +5,38 @@
 //  Created by Edno Fedulo on 14/05/18.
 //  Copyright © 2018 Fedulo. All rights reserved.
 //
-
 import UIKit
 
 class BaseController: UIViewController {
+    
+    let udacityClient = UdacityClient.sharedInstance()
+    
     @IBAction func doPlacePin(_ sender: Any) {
-        let controller = self.storyboard!.instantiateViewController(withIdentifier: "chooseLocationView")
-        self.present(controller, animated: true)
+        
+        ParseClient.sharedInstance().loadUserLocation((udacityClient.user?.id)!) { (userLocation, error) in
+            
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            if userLocation != nil {
+                self.confirm(message: "You have already posted a Student Location. Would you like to overwrite your current location?", confirmButtonTitle: "Overwrite", completionHandler: { (_) in
+                    let controller = self.storyboard!.instantiateViewController(withIdentifier: "chooseLocationView") as? PinViewController
+                    
+                    controller?.userLocation = userLocation
+                    
+                    self.present(controller!, animated: true)
+                })
+            } else {
+                let controller = self.storyboard!.instantiateViewController(withIdentifier: "chooseLocationView") as? PinViewController
+                let user = self.udacityClient.user!
+                
+                controller?.userLocation = StudentInformation(firstName: user.firstName, lastName: user.lastName, latitude: nil, longitude: nil, mapString: nil, mediaURL: nil, objectId: nil, uniqueKey: user.id, updatedAt: nil, createdAt: nil)
+                
+                self.present(controller!, animated: true)
+            }   
+        }
     }
     
     @IBAction func doRefresh(_ sender: Any) {

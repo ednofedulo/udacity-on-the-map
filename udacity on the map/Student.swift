@@ -9,17 +9,18 @@
 import Foundation
 
 struct StudentInformation:Decodable {
-    let firstName: String?
-    let lastName: String?
-    let latitude: Double?
-    let longitude: Double?
-    let mapString: String?
-    let mediaURL: String?
-    let objectId: String?
-    let uniqueKey: String?
-    let updatedAt: Date?
+    var firstName: String?
+    var lastName: String?
+    var latitude: Double?
+    var longitude: Double?
+    var mapString: String?
+    var mediaURL: String?
+    var objectId: String?
+    var uniqueKey: String?
+    var updatedAt: Date?
+    var createdAt: Date?
 }
 
 struct StudentsInformationResponse:Decodable {
-    let results: [StudentInformation]?
+    var results: [StudentInformation]?
 }

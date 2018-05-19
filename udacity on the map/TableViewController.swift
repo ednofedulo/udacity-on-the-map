@@ -19,8 +19,21 @@ class TableViewController: BaseController {
         super.viewDidLoad()
         studentsTableView.delegate = self
         studentsTableView.dataSource = self
-        //studentsTableView.reloadData()
+        
         configureNavBar()
+    }
+    @IBAction func refresh(_ sender: Any) {
+        ParseClient.sharedInstance().loadLocations(completionHandler: completionHandler)
+    }
+    
+    func completionHandler(_ success: Bool, _ error: String?) {
+        if success {
+            DispatchQueue.main.async {
+                self.studentsTableView.reloadData()
+            }
+        } else {
+            print(error!)
+        }
     }
 }
 
@@ -45,8 +58,8 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         let cellRow = tableView.dequeueReusableCell(withIdentifier: "cellrow")!
         cellRow.imageView?.image = UIImage(named: Constants.UI.PinIcon)
         
-        cellRow.textLabel?.text = "\(student.firstName! ) \(student.lastName! )"
-        cellRow.detailTextLabel?.text = student.mediaURL
+        cellRow.textLabel?.text = "\(student.firstName ?? "nil" ) \(student.lastName ?? "nil" )"
+        cellRow.detailTextLabel?.text = student.mediaURL ?? "nil"
         
         return cellRow
     }

@@ -19,6 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ON THE MAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8J2-xV-2cR">
+                                <rect key="frame" x="8" y="148" width="359" height="57.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="44"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.15258454623287671" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="5" height="5"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="uFW-A9-iZf">
                                 <rect key="frame" x="50" y="244.5" width="275" height="179"/>
                                 <subviews>
@@ -28,7 +36,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="26k-ZH-b8n">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="26k-ZH-b8n">
                                         <rect key="frame" x="0.0" y="43" width="275" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -54,9 +62,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.52630470024491594" blue="0.19916906856567429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="8J2-xV-2cR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="0Jk-Lk-2LW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8J2-xV-2cR" secondAttribute="trailing" constant="8" id="0XE-XV-bTe"/>
                             <constraint firstItem="uFW-A9-iZf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3JO-85-55V"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uFW-A9-iZf" secondAttribute="trailing" constant="50" id="7QF-m0-shL"/>
                             <constraint firstItem="uFW-A9-iZf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Oxl-9f-39R"/>
+                            <constraint firstItem="8J2-xV-2cR" firstAttribute="bottom" secondItem="uFW-A9-iZf" secondAttribute="top" constant="-39" id="mGJ-fz-hQS"/>
                             <constraint firstItem="uFW-A9-iZf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="pUa-yk-bMm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -97,22 +108,22 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-71" translatesAutoresizingMaskIntoConstraints="NO" id="iSs-IB-fYQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
+                                                <rect key="frame" x="0.0" y="23" width="375" height="192.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHZ-3u-IjE">
-                                                        <rect key="frame" x="87.5" y="0.0" width="200.5" height="119"/>
+                                                        <rect key="frame" x="87.5" y="0.0" width="200.5" height="111.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="34"/>
                                                         <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="studying" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gx-cz-F7I">
-                                                        <rect key="frame" x="124.5" y="48" width="126" height="119.5"/>
+                                                        <rect key="frame" x="124.5" y="40.5" width="126" height="111.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                                         <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0c-aP-dRF">
-                                                        <rect key="frame" x="141" y="96.5" width="93" height="119"/>
+                                                        <rect key="frame" x="141" y="81" width="93" height="111.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="34"/>
                                                         <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -122,7 +133,7 @@
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="iSs-IB-fYQ" firstAttribute="top" secondItem="mX6-Ir-FvB" secondAttribute="top" id="0NV-6F-A32"/>
+                                            <constraint firstItem="iSs-IB-fYQ" firstAttribute="top" secondItem="mX6-Ir-FvB" secondAttribute="top" constant="23" id="0NV-6F-A32"/>
                                             <constraint firstItem="h7i-2G-5vk" firstAttribute="top" secondItem="mX6-Ir-FvB" secondAttribute="top" id="3cw-Dy-ldX"/>
                                             <constraint firstAttribute="bottom" secondItem="iSs-IB-fYQ" secondAttribute="bottom" id="A1d-90-aPo"/>
                                             <constraint firstAttribute="trailing" secondItem="iSs-IB-fYQ" secondAttribute="trailing" id="EN6-xl-jqC"/>
@@ -158,10 +169,10 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxa-fz-U5u">
                                                 <rect key="frame" x="50" y="90" width="275" height="36"/>
-                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Find on the Map">
-                                                    <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.makesToBounds" value="YES"/>
@@ -355,7 +366,7 @@
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="refresh" id="6WK-ba-BIm">
                                                 <connections>
-                                                    <action selector="doRefresh:" destination="EsQ-vi-h1U" id="6G8-ji-Ih4"/>
+                                                    <action selector="refresh:" destination="EsQ-vi-h1U" id="zYN-iF-DMn"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="baseline_person_pin_circle_black_24pt" id="6dE-jD-jer">
@@ -413,7 +424,7 @@
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="refresh" id="7PP-k5-ewi">
                                                 <connections>
-                                                    <action selector="doRefresh:" destination="Ckt-XP-Fd6" id="Amn-m3-xOS"/>
+                                                    <action selector="refresh:" destination="Ckt-XP-Fd6" id="jak-Yz-fDs"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="baseline_person_pin_circle_black_24pt" id="45Z-wM-XXt">

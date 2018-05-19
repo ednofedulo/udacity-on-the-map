@@ -7,46 +7,119 @@
 //
 
 import Foundation
+import UIKit
 
 class ParseClient {
     
     var studentsInformations: [StudentInformation]?
+    var userInformation: StudentInformation?
+    let session = URLSession.shared
+    let baseURL = "https://parse.udacity.com/parse/classes"
     
-    func generateRequest() -> URLRequest {
-        var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100")!)
+    func generateRequest(_ url: String, method: String? = nil) -> URLRequest {
+        var request = URLRequest(url: URL(string: url)!)
+        
+        if method != nil {
+            request.httpMethod = method!
+        } else if method == "POST", method == "PUT" {
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+        
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
         return request
     }
     
-    func loadLocations(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void){
+    func generateHttpBody(_ information: StudentInformation) -> Data {
+        let json = "{\"uniqueKey\": \"\(information.uniqueKey!)\", \"firstName\": \"\(information.firstName!)\", \"lastName\": \"\(information.lastName!)\",\"mapString\": \"\(information.mapString!)\", \"mediaURL\": \"\(information.mediaURL!)\",\"latitude\": \(information.latitude!), \"longitude\": \(information.longitude!)}"
         
-        let request = generateRequest()
-        let session = URLSession.shared
+        return json.data(using: .utf8)!
+    }
+    
+    func upsertUserLocation(_ information: StudentInformation, completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
+        
+        var URL = "\(baseURL)/StudentLocation"
+        var httpMethod = "POST"
+        if information.objectId != nil {
+            URL += "/\(information.objectId!)"
+            httpMethod = "PUT"
+        }
+        
+        var request = generateRequest(URL, method: httpMethod)
+        request.httpBody = generateHttpBody(information)
+        
         let task = session.dataTask(with: request) { data, response, error in
             
-            guard error == nil else {
-                completionHandler(false, "\(error!)")
-                return
-            }
+            let (errorMessage, newData) = ApiUtils.validate(data: data, response: response, error: error)
             
-            let httpResponse = response as? HTTPURLResponse
-            
-            guard (httpResponse?.statusCode)! > 199, (httpResponse?.statusCode)! < 300 else {
-                completionHandler(false, "Request returned invalid status code")
-                return
-            }
-            
-            guard let data = data else {
-                completionHandler(false, "No data returned")
+            guard errorMessage == nil else {
+                completionHandler(false, errorMessage)
                 return
             }
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-            guard let parsedData = try? decoder.decode(StudentsInformationResponse.self, from: data) else {
-                completionHandler(false, "error parsing data")
+            guard (try? decoder.decode(StudentsInformationResponse.self, from: newData!)) != nil else {
+                completionHandler(false, ApiUtils.getErrorMessage(error: .incorrectCredentials))
+                return
+            }
+            
+            completionHandler(true, nil)
+        }
+        task.resume()
+        
+    }
+    
+    func loadUserLocation(_ userId: String, completionHandler: @escaping (_ userInformation: StudentInformation?, _ error: String?) -> Void) {
+        
+        let params = "where={\"uniqueKey\":\"\(userId)\"}".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        
+        let request = generateRequest("\(self.baseURL)/StudentLocation?\(params!)")
+        
+        let task = session.dataTask(with: request) { data, response, error in
+            
+            let (errorMessage, newData) = ApiUtils.validate(data: data, response: response, error: error)
+            
+            guard errorMessage == nil else {
+                completionHandler(nil, errorMessage)
+                return
+            } 
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+            guard let parsedData = try? decoder.decode(StudentsInformationResponse.self, from: newData!) else {
+                completionHandler(nil, ApiUtils.getErrorMessage(error: .incorrectCredentials))
+                return
+            }
+            
+            guard parsedData.results != nil, (parsedData.results?.count)! > 0 else {
+                completionHandler(nil, nil)
+                return
+            }
+            
+            completionHandler(parsedData.results?[0], nil)
+        }
+        task.resume()
+    }
+    
+    func loadLocations(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void){
+        
+        let request = generateRequest("\(self.baseURL)/StudentLocation?limit=100")
+        
+        let task = session.dataTask(with: request) { data, response, error in
+            
+            let (errorMessage, newData) = ApiUtils.validate(data: data, response: response, error: error)
+            
+            guard errorMessage == nil else {
+                completionHandler(false, errorMessage)
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+            guard let parsedData = try? decoder.decode(StudentsInformationResponse.self, from: newData!) else {
+                completionHandler(false, ApiUtils.getErrorMessage(error: .incorrectCredentials))
                 return
             }
             

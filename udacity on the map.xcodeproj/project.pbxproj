@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50A269F20AFA7CA00768AEA /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50A269E20AFA7CA00768AEA /* ErrorEnum.swift */; };
 		A50FFEBE20AE4284009EA595 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FFEBD20AE4284009EA595 /* PinViewController.swift */; };
 		A5B908A320ABA1B6007BA9EF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B908A220ABA1B6007BA9EF /* Student.swift */; };
 		A5B908A520ABA263007BA9EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B908A420ABA263007BA9EF /* User.swift */; };
@@ -20,12 +21,12 @@
 		A5F0957E20AA447F00B3874F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0957D20AA447F00B3874F /* Constants.swift */; };
 		A5F0958120AA551900B3874F /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0958020AA551900B3874F /* UdacityClient.swift */; };
 		A5F0958420AA553F00B3874F /* ApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0958320AA553F00B3874F /* ApiUtils.swift */; };
-		A5F0958620AA657100B3874F /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0958520AA657100B3874F /* UdacityConstants.swift */; };
 		A5F0958920AA729700B3874F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0958820AA729700B3874F /* MapViewController.swift */; };
 		A5F0958C20AA72F300B3874F /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0958B20AA72F300B3874F /* ParseClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A50A269E20AFA7CA00768AEA /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
 		A50FFEBD20AE4284009EA595 /* PinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
 		A5B908A220ABA1B6007BA9EF /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		A5B908A420ABA263007BA9EF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -41,7 +42,6 @@
 		A5F0957D20AA447F00B3874F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A5F0958020AA551900B3874F /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		A5F0958320AA553F00B3874F /* ApiUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUtils.swift; sourceTree = "<group>"; };
-		A5F0958520AA657100B3874F /* UdacityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		A5F0958820AA729700B3874F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A5F0958B20AA72F300B3874F /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				A5F0958320AA553F00B3874F /* ApiUtils.swift */,
+				A50A269E20AFA7CA00768AEA /* ErrorEnum.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -131,7 +132,6 @@
 		A5F0958720AA657A00B3874F /* Udacity */ = {
 			isa = PBXGroup;
 			children = (
-				A5F0958520AA657100B3874F /* UdacityConstants.swift */,
 				A5F0958020AA551900B3874F /* UdacityClient.swift */,
 			);
 			name = Udacity;
@@ -218,11 +218,11 @@
 			files = (
 				A5F0958C20AA72F300B3874F /* ParseClient.swift in Sources */,
 				A5F0958420AA553F00B3874F /* ApiUtils.swift in Sources */,
-				A5F0958620AA657100B3874F /* UdacityConstants.swift in Sources */,
 				A5F0958120AA551900B3874F /* UdacityClient.swift in Sources */,
 				A5F0957C20AA443B00B3874F /* LoginViewController.swift in Sources */,
 				A5F0956B20AA41E800B3874F /* BaseController.swift in Sources */,
 				A5F0956920AA41E800B3874F /* AppDelegate.swift in Sources */,
+				A50A269F20AFA7CA00768AEA /* ErrorEnum.swift in Sources */,
 				A5E952D520ABA79400E60D7E /* TableViewController.swift in Sources */,
 				A5F0957E20AA447F00B3874F /* Constants.swift in Sources */,
 				A5B908A320ABA1B6007BA9EF /* Student.swift in Sources */,

@@ -11,8 +11,7 @@ import MapKit
 
 class PinViewController: BaseController, MKMapViewDelegate {
 
-    var coordinate: CLLocationCoordinate2D?
-    var foundLocation: String?
+    var userLocation: StudentInformation?
     
     @IBOutlet weak var locationText: UITextField!
     @IBOutlet weak var urlText: UITextField!
@@ -20,8 +19,8 @@ class PinViewController: BaseController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if coordinate != nil {
-            setMapLocation(location: coordinate)
+        if userLocation?.latitude != nil, userLocation?.longitude != nil, mapView != nil {
+            setMapLocation(location: CLLocationCoordinate2D(latitude: (userLocation?.latitude)!, longitude: (userLocation?.longitude)!))
         }
         // Do any additional setup after loading the view.
     }
@@ -29,7 +28,7 @@ class PinViewController: BaseController, MKMapViewDelegate {
     func setMapLocation(location: CLLocationCoordinate2D!) {
         let pointAnnotation = MKPointAnnotation()
         
-        pointAnnotation.title = self.foundLocation
+        pointAnnotation.title = userLocation?.mapString
         pointAnnotation.coordinate = location
         
         let region = MKCoordinateRegionMake(location, MKCoordinateSpanMake(0.01, 0.01))
@@ -58,6 +57,20 @@ class PinViewController: BaseController, MKMapViewDelegate {
             return
         }
         
+        self.userLocation?.mediaURL = url
+        
+        ParseClient.sharedInstance().upsertUserLocation(self.userLocation!) { (success, error) in
+            if success {
+                DispatchQueue.main.async {
+                    self.showAlert(message: "Location Updated", title: "Success")
+                }
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                DispatchQueue.main.async {
+                    self.showAlert(message: "Error while updating user location, try again", title: "Error")
+                }
+            }
+        }
         
     }
     
@@ -77,8 +90,10 @@ class PinViewController: BaseController, MKMapViewDelegate {
             weak var tempController = self.presentingViewController
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "enterLinkView") as! PinViewController
             
-            controller.coordinate = placemark!.first!.location!.coordinate
-            controller.foundLocation = txtLocation
+            controller.userLocation = self.userLocation
+            controller.userLocation?.mapString = txtLocation
+            controller.userLocation?.latitude = placemark!.first!.location!.coordinate.latitude
+            controller.userLocation?.longitude = placemark!.first!.location!.coordinate.longitude
             
             self.dismiss(animated: true, completion: {
                 tempController!.present(controller, animated: true)

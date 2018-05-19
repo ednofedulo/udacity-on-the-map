@@ -22,12 +22,16 @@ class MapViewController: BaseController, MKMapViewDelegate {
         
         configureNavBar()
     }
-
+    
+    @IBAction func refresh(_ sender: Any) {
+        parseClient.loadLocations(completionHandler: completionHandler)
+    }
+    
     func populateMap() {
         
         var annotations = [MKPointAnnotation]()
         let studentsInformations = parseClient.studentsInformations!
-        
+        mapView.removeAnnotations(mapView.annotations)
         for studentInformation in studentsInformations {
             //some registers have nil longitude or latitude
             if studentInformation.longitude == nil, studentInformation.latitude == nil {

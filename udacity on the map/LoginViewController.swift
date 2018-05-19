@@ -22,12 +22,17 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        usernameTextField.text = ""
+        passwordTextField.text = ""
     }
 
     @IBAction func loginPressed(_ sender: Any) {
         guard !usernameTextField.text!.isEmpty, !passwordTextField.text!.isEmpty else {
-            feedbackMsgLabel.text = "Please provide username & password to login."
+            feedbackMsgLabel.text = "Username & Password are required"
             return
         }
         let username = usernameTextField.text!
@@ -39,15 +44,24 @@ class LoginViewController: UIViewController {
         setUIEnabled(true)
     }
     
-    func completionHandler(success: Bool, error: String?) {
-        if !success {
+    func completionHandler(userId: String?, error: String?) {
+        if userId == nil {
             DispatchQueue.main.async {
                 self.displayError(error!)
             }
-        } else {
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "NavigationController")
-            self.present(controller, animated: true)
+            return
         }
+            
+        UdacityClient.sharedInstance().loadUserData(userId!, completionHandler: { (success, error) in
+            if success {
+                let controller = self.storyboard!.instantiateViewController(withIdentifier: "NavigationController")
+                self.present(controller, animated: true)
+            } else {
+                DispatchQueue.main.async {
+                    self.displayError("Error loading user data")
+                }
+            }
+        })
     }
     
     func displayError(_ error: String) {
@@ -83,5 +97,23 @@ private extension LoginViewController {
         
         loginButton.backgroundColor = UIColor(red:0.84, green:0.35, blue:0.00, alpha:1.0)
         
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        // Try to find next responder
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        // Do not add a line break
+        return false
     }
 }
