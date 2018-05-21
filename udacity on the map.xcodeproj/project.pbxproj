@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A50A269F20AFA7CA00768AEA /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50A269E20AFA7CA00768AEA /* ErrorEnum.swift */; };
 		A50FFEBE20AE4284009EA595 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FFEBD20AE4284009EA595 /* PinViewController.swift */; };
+		A53858E220B2DAFA002CE629 /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53858E120B2DAFA002CE629 /* SharedData.swift */; };
+		A53858E420B2E3FC002CE629 /* ActivityIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53858E320B2E3FC002CE629 /* ActivityIndicatorViewController.swift */; };
 		A5B908A320ABA1B6007BA9EF /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B908A220ABA1B6007BA9EF /* Student.swift */; };
 		A5B908A520ABA263007BA9EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B908A420ABA263007BA9EF /* User.swift */; };
 		A5E952D520ABA79400E60D7E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E952D420ABA79400E60D7E /* TableViewController.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		A50A269E20AFA7CA00768AEA /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
 		A50FFEBD20AE4284009EA595 /* PinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
+		A53858E120B2DAFA002CE629 /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		A53858E320B2E3FC002CE629 /* ActivityIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorViewController.swift; sourceTree = "<group>"; };
 		A5B908A220ABA1B6007BA9EF /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		A5B908A420ABA263007BA9EF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5E952D420ABA79400E60D7E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			children = (
 				A5B908A220ABA1B6007BA9EF /* Student.swift */,
 				A5B908A420ABA263007BA9EF /* User.swift */,
+				A53858E120B2DAFA002CE629 /* SharedData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -107,6 +112,7 @@
 				A5F0958820AA729700B3874F /* MapViewController.swift */,
 				A5E952D420ABA79400E60D7E /* TableViewController.swift */,
 				A50FFEBD20AE4284009EA595 /* PinViewController.swift */,
+				A53858E320B2E3FC002CE629 /* ActivityIndicatorViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -224,10 +230,12 @@
 				A5F0956920AA41E800B3874F /* AppDelegate.swift in Sources */,
 				A50A269F20AFA7CA00768AEA /* ErrorEnum.swift in Sources */,
 				A5E952D520ABA79400E60D7E /* TableViewController.swift in Sources */,
+				A53858E220B2DAFA002CE629 /* SharedData.swift in Sources */,
 				A5F0957E20AA447F00B3874F /* Constants.swift in Sources */,
 				A5B908A320ABA1B6007BA9EF /* Student.swift in Sources */,
 				A5F0958920AA729700B3874F /* MapViewController.swift in Sources */,
 				A50FFEBE20AE4284009EA595 /* PinViewController.swift in Sources */,
+				A53858E420B2E3FC002CE629 /* ActivityIndicatorViewController.swift in Sources */,
 				A5B908A520ABA263007BA9EF /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

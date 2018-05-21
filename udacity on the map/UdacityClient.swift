@@ -67,14 +67,14 @@ class UdacityClient {
         }
         
         let task = session.dataTask(with: request) { data, response, error in
-            let (errorMessage, newData) = ApiUtils.validate(data: data, response: response, error: error, udacity: true)
+            let (errorMessage, _) = ApiUtils.validate(data: data, response: response, error: error, udacity: true)
             
             guard errorMessage == nil else {
                 completionHandler(false, errorMessage)
                 return
             }
             
-            print(String(data: newData!, encoding: .utf8)!)
+            completionHandler(true, nil)
         }
         task.resume()
     }

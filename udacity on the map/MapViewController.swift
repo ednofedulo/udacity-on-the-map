@@ -18,19 +18,17 @@ class MapViewController: BaseController, MKMapViewDelegate {
         super.viewDidLoad()
         mapView.delegate = self
         parseClient.loadLocations(completionHandler: completionHandler)
-        //populateMap()
-        
-        configureNavBar()
     }
     
     @IBAction func refresh(_ sender: Any) {
+        startActivityIndicator()
         parseClient.loadLocations(completionHandler: completionHandler)
     }
     
     func populateMap() {
         
         var annotations = [MKPointAnnotation]()
-        let studentsInformations = parseClient.studentsInformations!
+        let studentsInformations = SharedData.shared.studentsInformations
         mapView.removeAnnotations(mapView.annotations)
         for studentInformation in studentsInformations {
             //some registers have nil longitude or latitude
@@ -62,12 +60,15 @@ class MapViewController: BaseController, MKMapViewDelegate {
     }
     
     func completionHandler(_ success: Bool, _ error: String?) {
+        self.dismissActivityIndicator()
         if success {
             DispatchQueue.main.async {
                 self.populateMap()
             }
         } else {
-            print(error!)
+            
+            self.showAlert(message: "Unable to load Students Locations", title: "Error")
+            
         }
     }
     

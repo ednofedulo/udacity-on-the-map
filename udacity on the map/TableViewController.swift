@@ -19,8 +19,6 @@ class TableViewController: BaseController {
         super.viewDidLoad()
         studentsTableView.delegate = self
         studentsTableView.dataSource = self
-        
-        configureNavBar()
     }
     @IBAction func refresh(_ sender: Any) {
         ParseClient.sharedInstance().loadLocations(completionHandler: completionHandler)
@@ -32,19 +30,21 @@ class TableViewController: BaseController {
                 self.studentsTableView.reloadData()
             }
         } else {
-            print(error!)
+            
+                self.showAlert(message: "Unable to load Students Locations", title: "Error")
+            
         }
     }
 }
 
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (ParseClient.sharedInstance().studentsInformations?.count)!
+        return SharedData.shared.studentsInformations.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let app = UIApplication.shared
-        let student = ParseClient.sharedInstance().studentsInformations![indexPath.row]
+        let student = SharedData.shared.studentsInformations[indexPath.row]
         if let toOpen = student.mediaURL {
             let url = URL(string: toOpen)
             if url != nil, app.canOpenURL(url!) {
@@ -54,7 +54,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let student = ParseClient.sharedInstance().studentsInformations![indexPath.row]
+        let student = SharedData.shared.studentsInformations[indexPath.row]
         let cellRow = tableView.dequeueReusableCell(withIdentifier: "cellrow")!
         cellRow.imageView?.image = UIImage(named: Constants.UI.PinIcon)
         

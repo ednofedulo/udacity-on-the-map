@@ -105,7 +105,7 @@ class ParseClient {
     
     func loadLocations(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void){
         
-        let request = generateRequest("\(self.baseURL)/StudentLocation?limit=100")
+        let request = generateRequest("\(self.baseURL)/StudentLocation?limit=100&order=-updatedAt")
         
         let task = session.dataTask(with: request) { data, response, error in
             
@@ -123,7 +123,7 @@ class ParseClient {
                 return
             }
             
-            self.studentsInformations = parsedData.results?.sorted(by: { $0.updatedAt! > $1.updatedAt! })
+            SharedData.shared.studentsInformations = parsedData.results!
             
             completionHandler(true, nil)
         }

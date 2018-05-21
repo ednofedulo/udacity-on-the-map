@@ -17,7 +17,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var feedbackMsgLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

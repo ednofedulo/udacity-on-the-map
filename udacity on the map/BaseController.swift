@@ -10,6 +10,7 @@ import UIKit
 class BaseController: UIViewController {
     
     let udacityClient = UdacityClient.sharedInstance()
+    let activityIndicator = ActivityIndicatorViewController()
     
     @IBAction func doPlacePin(_ sender: Any) {
         
@@ -39,36 +40,52 @@ class BaseController: UIViewController {
         }
     }
     
-    @IBAction func doRefresh(_ sender: Any) {
-        
-    }
-    
     @IBAction func doLogout(_ sender: Any) {
         confirm(message: "Do you want do logout?", completionHandler: { (_) in
-            ParseClient.sharedInstance().studentsInformations = nil
-            self.dismiss(animated: true, completion: nil)
+            
+            self.udacityClient.doLogout(completionHandler: { (success, error) in
+                if success {
+                    ParseClient.sharedInstance().studentsInformations = nil
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    self.showAlert(message: "Unable to logout from server", title: "Error")
+                }
+            })
+            
         })
     }
     
-    func configureNavBar(){
-        let pinImage = UIImage(named: Constants.UI.PinIcon)
+    func startActivityIndicator() {
         
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(doRefresh))
         
-        let pinButton = UIBarButtonItem(image: pinImage, style: .plain, target: self, action: #selector(doPlacePin))
+        // add the spinner view controller
+        addChildViewController(activityIndicator)
+        activityIndicator.view.frame = view.frame
+        view.addSubview(activityIndicator.view)
+        activityIndicator.didMove(toParentViewController: self)
         
-        self.navigationItem.rightBarButtonItems = [refreshButton, pinButton]
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(doLogout))
+        // wait two seconds to simulate some work happening
+        
+    }
+    
+    func dismissActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicator.willMove(toParentViewController: nil)
+            self.activityIndicator.view.removeFromSuperview()
+            self.activityIndicator.removeFromParentViewController()
+        }
     }
     
     func showAlert(message: String, title: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default) { (action: UIAlertAction!) in
-            alertController.dismiss(animated: true, completion: nil)
-        })
-        
-        self.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .default) { (action: UIAlertAction!) in
+                alertController.dismiss(animated: true, completion: nil)
+            })
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func confirm(message: String, confirmButtonTitle: String = "OK", completionHandler: @escaping ((UIAlertAction) -> Void)) {

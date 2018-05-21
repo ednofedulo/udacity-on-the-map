@@ -19,10 +19,19 @@ class PinViewController: BaseController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if locationText != nil {
+            locationText.delegate = self
+        }
+        
+        if urlText != nil {
+            urlText.delegate = self
+        }
+        
         if userLocation?.latitude != nil, userLocation?.longitude != nil, mapView != nil {
             setMapLocation(location: CLLocationCoordinate2D(latitude: (userLocation?.latitude)!, longitude: (userLocation?.longitude)!))
         }
-        // Do any additional setup after loading the view.
+        
     }
     
     func setMapLocation(location: CLLocationCoordinate2D!) {
@@ -59,16 +68,18 @@ class PinViewController: BaseController, MKMapViewDelegate {
         
         self.userLocation?.mediaURL = url
         
+        startActivityIndicator()
         ParseClient.sharedInstance().upsertUserLocation(self.userLocation!) { (success, error) in
+            self.dismissActivityIndicator()
             if success {
-                DispatchQueue.main.async {
-                    self.showAlert(message: "Location Updated", title: "Success")
-                }
+                
+                self.showAlert(message: "Location Updated", title: "Success")
+                
                 self.dismiss(animated: true, completion: nil)
             } else {
-                DispatchQueue.main.async {
-                    self.showAlert(message: "Error while updating user location, try again", title: "Error")
-                }
+                
+                self.showAlert(message: "Error while updating user location, try again", title: "Error")
+                
             }
         }
         
@@ -79,11 +90,13 @@ class PinViewController: BaseController, MKMapViewDelegate {
             showAlert(message: "please insert location", title: "error")
             return
         }
-        
+        startActivityIndicator()
         CLGeocoder().geocodeAddressString(txtLocation) { (placemark, error) in
-            
+            self.dismissActivityIndicator()
             guard error == nil else {
-                print("error getting location")
+                
+                    self.showAlert(message: "Unable to find location", title: "Error")
+                
                 return
             }
             
@@ -106,4 +119,12 @@ class PinViewController: BaseController, MKMapViewDelegate {
     }
     
 
+}
+
+extension PinViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return false
+    }
 }
